@@ -5,6 +5,7 @@ import { CreateUserDto } from './dto/request/create-user.dto';
 import { UpdateUserDto } from './dto/request/update-user.dto';
 import { UserDto } from './dto/response/user.dto';
 import { hashSync } from 'bcryptjs';
+import { TopUserDto } from './dto/response/top-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -52,5 +53,28 @@ export class UsersService {
     });
 
     return plainToInstance(UserDto, user);
+  }
+
+  async topUser(): Promise<TopUserDto[]> {
+    const users = await this.prismaService.user.findMany({
+      select: {
+        id: true,
+        name: true,
+        dni: true /*
+        _count: {
+          select: {
+            code: true,
+          },
+        },*/,
+      },
+      orderBy: {
+        code: {
+          _count: 'desc',
+        },
+      },
+      take: 5,
+    });
+
+    return plainToInstance(TopUserDto, users);
   }
 }
