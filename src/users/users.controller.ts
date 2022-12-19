@@ -43,7 +43,13 @@ export class UsersController {
   }
 
   @Get()
-  async topUser(): Promise<TopUserDto[]> {
+  topUser(): Promise<TopUserDto[]> {
     return this.usersService.topUser();
+  }
+
+  //Crear un endpoint para enviar un correo al usuario con la mayor cantidad de códigos.
+  @Post('send')
+  sendEnail(): Promise<string> {
+    return this.usersService.sendEmail();
   }
 }

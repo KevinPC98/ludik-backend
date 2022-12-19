@@ -78,4 +78,40 @@ export class UsersService {
 
     return plainToInstance(TopUserDto, users);
   }
+
+  async sendEmail(): Promise<string> {
+    const user = await this.prismaService.user.findFirst({
+      select: {
+        id: true,
+        name: true,
+        dni: true,
+        code: true,
+        _count: {
+          select: {
+            code: true,
+          },
+        },
+      },
+      orderBy: {
+        code: {
+          _count: 'desc',
+        },
+      },
+    });
+
+    console.log(user);
+
+    let codes = '';
+
+    for (let i = 0; i < user.code.length; i++) {
+      codes += '■ ' + user.code[i].code + '\n';
+    }
+
+    return `Gracias por participar, eres el usuario con la mayor cantidad de códigos ingresados ya
+    que cuentas con ${user._count.code} códigos, los que son:
+
+    ${codes}
+
+    `;
+  }
 }
