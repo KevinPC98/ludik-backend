@@ -14,6 +14,7 @@ import { UserDto } from './dto/response/user.dto';
 import { TopUserDto } from './dto/response/top-user.dto';
 import { plainToInstance } from 'class-transformer';
 
+//CRUD (create, read, update y delete) de users (campos: id, name, lastname, dni, email, password, created_at, updated_at)
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}

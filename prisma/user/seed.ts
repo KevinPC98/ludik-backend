@@ -3,6 +3,8 @@ import { PrismaClient } from '@prisma/client';
 import { datatype, internet, name } from 'faker';
 import { hashSync } from 'bcryptjs';
 
+//Crear un seed que llene la tabla con 100 registros de usuarios en distintas fechas de creación (created_at).
+
 const prisma = new PrismaClient();
 
 async function main() {

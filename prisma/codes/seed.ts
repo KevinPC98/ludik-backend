@@ -4,6 +4,8 @@ import { datatype, internet, lorem, name } from 'faker';
 
 const prisma = new PrismaClient();
 
+// Crear un seed que llene la tabla con 1000 registros de codigos aleatorios en distintos usuarios.
+
 async function main() {
   Logger.log('seeding...');
 

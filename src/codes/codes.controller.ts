@@ -12,6 +12,7 @@ import { CreateCodeDto } from './dto/request/create-code.dto';
 import { UpdateCodeDto } from './dto/request/update-code.dto';
 import { CodeDto } from './dto/response/code.dto';
 
+//CRUD (create, read, update y delete) de codes y relacionarlo con la tabla users (campos: id, code, user_id, created_at, updated_at)
 @Controller('codes')
 export class CodesController {
   constructor(private readonly codesService: CodesService) {}

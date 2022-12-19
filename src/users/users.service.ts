@@ -55,6 +55,7 @@ export class UsersService {
     return plainToInstance(UserDto, user);
   }
 
+  // Obtener los usuarios que ingresaron mayor cantidad de códigos (devolver id, name, dni)
   async topUser(): Promise<TopUserDto[]> {
     const users = await this.prismaService.user.findMany({
       select: {
