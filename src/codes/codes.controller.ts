@@ -6,7 +6,9 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/common/jwt-auth.guard';
 import { CodesService } from './codes.service';
 import { CreateCodeDto } from './dto/request/create-code.dto';
 import { UpdateCodeDto } from './dto/request/update-code.dto';
@@ -18,6 +20,7 @@ export class CodesController {
   constructor(private readonly codesService: CodesService) {}
 
   @Post(':id')
+  @UseGuards(JwtAuthGuard)
   create(
     @Param('id') id: string,
     @Body() createCodeDto: CreateCodeDto,
